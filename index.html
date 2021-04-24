@@ -34,8 +34,8 @@
 
     <div :key="job.id" class="card-job">
 
-      <div v-if="job.featured" class="featured-strip on"></div>
-      <div v-else class="featured-strip off">&nbsp;</div>
+      <div  class="featured-strip" v-bind:class="{on:job.featured}"></div>
+
 
       <div class="card-contents">
 

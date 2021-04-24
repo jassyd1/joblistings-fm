@@ -73,9 +73,7 @@ p {
   background-color: var(--primary);
 }
 
-.featured-strip.off{
-  background-color: transparent;
-}
+
 
 .card-contents {
   padding: 35px 40px 35px 35px;
