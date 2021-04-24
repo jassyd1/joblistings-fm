@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="jobfilter.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Frontend Mentor | Job Listings</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <div class="banner"></div>
+  <section class="container" id="app">
+ <template v-for="job in jobs">
+
+
+    <div :key="job.id" class="card-job">
+
+      <div v-if="job.featured" class="featured-strip on"></div>
+      <div v-else class="featured-strip off">&nbsp;</div>
+
+      <div class="card-contents">
+
+
+        <div class="img-job"><img v-bind:src="job.logo" /></div>
+
+
+        <div class="details">
+          <div class="details-top">
+            <div class="company-name">
+              {{job.company}}
+            </div>
+            <div class="tokens">
+              <div v-if="job.new" class="new token">
+                <span>New!</span>
+              </div>
+              <div v-if="job.featured" class="featured token">
+                <span>Featured</span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <h1 class="position">{{job.position}}</h1>
+
+
+
+          <div class="details-bottom">
+            <div class="posted-at">
+              {{job.postedAt}}
+            </div>
+            <div class="bullet">&#9679;</div>
+            <div class="contract">{{job.contract}}</div>
+            <div class="bullet">&#9679;</div>
+            <div class="location">{{job.location}}</div>
+          </div>
+
+        </div>
+
+        <div class="filters">
+          <div class="filter">
+            {{job.role}}
+          </div>
+          <div class="filter">
+            {{job.level}}
+          </div>
+          <div v-for="language in job.languages" class="filter">
+            {{language}}
+          </div>
+          <div v-for="tool in job.tools" class="filter">
+            {{tool}}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+</template>
+  </section>
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Jasmin D </a>.
+  </div>
+
+  <script src='jobfilter.js'></script>
+</body>
+
+
+</html>
