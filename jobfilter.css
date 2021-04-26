@@ -46,18 +46,26 @@ p {
 
 }
 
-.card-job:first-of-type{
-  margin-top: 40px;
+.card.job:last-of-type{
+  margin-bottom: 40px;
 }
 
-.card-job {
+.card {
   background-color: #fff;
   border-radius: 5px;
   width: 75%;
-  margin: 20px 0;
+  margin: 30px 0 0 0;
   display: flex;
   box-shadow: 0px 0px 10px var(--shadow);
 
+}
+
+.card.filters-active {
+position: relative;
+margin: 0;
+transform: translateY(-50%);
+display: flex;
+flex-wrap: wrap;
 }
 
 .featured-strip {
@@ -176,6 +184,42 @@ border-radius: 3px;
 white-space: nowrap;
 }
 
+.filter:hover {
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.filter-active > .filter {
+  border-radius: 3px 0px 0px 3px;
+  pointer-events: none;
+  margin: 0;
+}
+
+
+.filter-active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 20px 0 0;
+}
+
+.remove {
+  background-color: var(--primary);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  width: 14px;
+  border-radius: 0 3px 3px 0;
+}
+
+.remove:hover {
+  background-color: var(--neutral-darkgrey);
+  cursor:pointer;
+}
+
 .details-bottom .bullet {
   font-size: 0.5rem;
   margin: 0 20px;
@@ -203,4 +247,15 @@ white-space: nowrap;
 
 @ media only screen and (max-width: 600px) {
 
+}
+
+
+/*transitions*/
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

@@ -9,6 +9,9 @@
   <link rel="stylesheet" type="text/css" href="jobfilter.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
   <title>Frontend Mentor | Job Listings</title>
 
@@ -29,10 +32,27 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <div class="banner"></div>
   <section class="container" id="app">
- <template v-for="job in jobs">
+
+<transition name="fade">
+<div v-if="filtersActive.length > 0" class="card filters-active">
+  <div class="card-contents">
+    <div v-for="filter in filtersActive" class="filter-active">
+      <div class="filter">
+        {{filter}}
+      </div>
+      <div class="remove" @click="removeFilterToken(filter)">
+        <img src="images/icon-remove.svg" />
+      </div>
+    </div>
+
+  </div>
+</div>
+</transition>
 
 
-    <div :key="job.id" class="card-job">
+ <template v-for="job in filteredJobs">
+
+    <div :key="job.id" class="card job">
 
       <div  class="featured-strip" v-bind:class="{on:job.featured}"></div>
 
@@ -77,24 +97,25 @@
         </div>
 
         <div class="filters">
-          <div class="filter">
-            {{job.role}}
+          <div  v-for="filter in job.hasFilters" class="filter" @click="addFilter(filter);">
+            {{filter}}
           </div>
-          <div class="filter">
+          <!--<div class="filter" @click="addFilter(job.level)">
             {{job.level}}
           </div>
-          <div v-for="language in job.languages" class="filter">
+          <div v-for="language in job.languages" @click="addFilter(language)" class="filter">
             {{language}}
           </div>
-          <div v-for="tool in job.tools" class="filter">
+          <div v-for="tool in job.tools" @click="addFilter(tool)"class="filter">
             {{tool}}
-          </div>
+          </div> -->
 
         </div>
 
       </div>
 
     </div>
+
 </template>
   </section>
 
@@ -105,6 +126,8 @@
   </div>
 
   <script src='jobfilter.js'></script>
+  <script src="https://use.fontawesome.com/6c27e918d3.js"></script>
+
 </body>
 
 
